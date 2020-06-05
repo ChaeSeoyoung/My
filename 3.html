@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>멋사신문에 오신 걸 환영합니다!</title>
+    <meta charset="utf-8">
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            margin:0;
+            
+        }
+        a {
+            color:black;
+            text-decoration: none;    
+        }
+        #clock, #timer, #stopwatch{
+            border:1px solid #dedede;
+            width:600px;
+            height:250px;
+            line-height:250px;
+            font-size:100px;
+            text-align:center;
+        }
+        h1{
+            padding-left: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        //clock
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10){
+                i = "0" + i
+            };
+            return i;
+        }
+
+        //timer
+        var t2 = prompt("Timer(second)");
+        var m2 = "";
+        var s2 = "";
+
+        var x = setInterval(function(){
+			
+            m2 = parseInt(t2/60);
+            s2 = t2 % 60;
+            m2 = checkTime(m2);
+            s2 = checkTime(s2);
+
+			document.getElementById("timer").innerHTML = m2 + ":" + s2;
+					
+			t2--;
+			
+			if (t2 < 0) {
+				clearInterval(x);
+				document.getElementById("timer").innerHTML = "TimeOut!";
+			}
+        }, 1000);
+
+
+        //stopwatch
+        var t3 = "0";
+
+        var x3 = setInterval(function(){
+			
+            var m3 = parseInt(t3 / 60);
+            var s3 = t3 % 60;
+            m3 = checkTime(m3);
+            s3 = checkTime(s3);
+
+			document.getElementById("stopwatch").innerHTML = m3 + ":" + s3;
+					
+            t3++;
+            
+        }, 1000);
+        
+        
+	</script>
+
+</head>
+
+<body onload="startTime()">
+
+    <h1><a href="assign1.html"><p class="text-center">멋사신문</p></a></h1>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation"><a href="assign1.html">Home</a></li>
+        <li role="presentation" class="active"><a href="3.html">Time</a></li>
+        <li role="presentation"><a href="1.html">News</a></li>
+        <li role="presentation"><a href="ms.html">Bingo</a></li>
+        <li role="presentation"><a href="timeline.html">Timeline</a></li>
+    </ul>
+
+    <h1>🕐 Clock</h1>
+    <div id="clock"></div>
+
+    <h1>⏱ Timer</h1>
+    <div id="timer"></div>
+
+    <h1>⏰ StopWatch</h1>
+    <div id="stopwatch"></div>
+</body>
+
+</html>
